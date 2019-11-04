@@ -11,6 +11,7 @@ require (
 	github.com/gorilla/websocket v1.4.1
 	github.com/selfid-net/self-messaging-proto v0.0.0-20191031120210-5febc880994b
 	github.com/stretchr/testify v1.4.0
+	github.com/tidwall/gjson v1.3.4
 	golang.org/x/crypto v0.0.0-20191011191535-87dc89f01550
 	gopkg.in/square/go-jose.v2 v2.4.0
 )

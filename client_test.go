@@ -130,3 +130,24 @@ func TestClientBusy(t *testing.T) {
 	err = c.PermitAll()
 	require.Nil(t, err)
 }
+
+func TestClientJWSRequestResponse(t *testing.T) {
+	s := newServer()
+	defer s.close()
+
+	c, err := New(s.endpoint, "someID", "1", privkey)
+	require.Nil(t, err)
+	require.NotNil(t, c)
+
+	request := `{"payload": "eyJjaWQiOiAiMTIzNDU2In0"}`
+
+	m := &msgproto.Message{Type: msgproto.MsgType_MSG, Sender: "test", Recipient: "tset", Ciphertext: []byte(request)}
+	_, err = c.JWSRequest("123456", m)
+	require.Nil(t, err)
+
+	s.out <- &msgproto.Message{Type: msgproto.MsgType_MSG, Sender: "tset", Recipient: "test", Ciphertext: []byte(request)}
+	resp, err := c.JWSResponse("123456", time.Second)
+	require.Nil(t, err)
+	require.NotNil(t, resp)
+	assert.Equal(t, []byte(request), resp.Ciphertext)
+}
