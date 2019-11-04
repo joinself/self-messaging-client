@@ -75,6 +75,10 @@ func (rc *requestCache) wait(reqID string, timeout time.Duration) (proto.Message
 
 // Send sends a response to the waiting thread. Will return true if there is a valid request registered
 func (rc *requestCache) sendJWS(reqID string, m *msgproto.Message) bool {
+	if reqID == "" {
+		return false
+	}
+
 	rc.jwsmu.Lock()
 	ch, ok := rc.jwsRequests[reqID]
 	rc.jwsmu.Unlock()
@@ -85,7 +89,7 @@ func (rc *requestCache) sendJWS(reqID string, m *msgproto.Message) bool {
 
 	ch <- m
 
-	return false
+	return true
 }
 
 // Register makes a request

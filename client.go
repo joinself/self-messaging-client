@@ -262,9 +262,8 @@ func (c *Client) reader() {
 		case msgproto.MsgType_MSG:
 			msg := m.(*msgproto.Message)
 			msgID := getJWSResponseID(msg.Ciphertext)
-			if msgID != "" {
-				c.requests.sendJWS("jws:"+msgID, msg)
-			} else {
+			ok := c.requests.sendJWS(msgID, msg)
+			if !ok {
 				c.recv <- msg
 			}
 		}
@@ -381,11 +380,11 @@ func (c *Client) ListACLRules() ([]ACLRule, error) {
 
 // JWSRequest makes a JWS request and returns the response
 func (c *Client) JWSRequest(id string, m *msgproto.Message) (chan *msgproto.Message, error) {
-	ch := c.requests.registerJWS("jws:" + id)
+	ch := c.requests.registerJWS(id)
 
 	err := c.Send(m)
 	if err != nil {
-		c.requests.cancelJWS("jws:" + id)
+		c.requests.cancelJWS(id)
 		return nil, err
 	}
 
@@ -394,7 +393,7 @@ func (c *Client) JWSRequest(id string, m *msgproto.Message) (chan *msgproto.Mess
 
 // JWSResponse waits for a message response for a given JWS request
 func (c *Client) JWSResponse(id string, timeout time.Duration) (*msgproto.Message, error) {
-	return c.requests.waitJWS("jws:"+id, timeout)
+	return c.requests.waitJWS(id, timeout)
 }
 
 // Request send a message that expects a response
