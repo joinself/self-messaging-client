@@ -258,9 +258,14 @@ func (c *Client) reader() {
 
 		switch hdr.Type {
 		case msgproto.MsgType_ACK, msgproto.MsgType_ERR:
-			c.requests.Send(hdr.Id, m)
+			c.requests.send(hdr.Id, m)
 		case msgproto.MsgType_MSG:
-			c.recv <- m.(*msgproto.Message)
+			msg := m.(*msgproto.Message)
+			msgID := getJWSResponseID(msg.Ciphertext)
+			ok := c.requests.sendJWS(msgID, msg)
+			if !ok {
+				c.recv <- msg
+			}
 		}
 	}
 }
@@ -373,6 +378,24 @@ func (c *Client) ListACLRules() ([]ACLRule, error) {
 	return rules, err
 }
 
+// JWSRequest makes a JWS request and returns the response
+func (c *Client) JWSRequest(id string, m *msgproto.Message) (chan *msgproto.Message, error) {
+	ch := c.requests.registerJWS(id)
+
+	err := c.Send(m)
+	if err != nil {
+		c.requests.cancelJWS(id)
+		return nil, err
+	}
+
+	return ch, nil
+}
+
+// JWSResponse waits for a message response for a given JWS request
+func (c *Client) JWSResponse(id string, timeout time.Duration) (*msgproto.Message, error) {
+	return c.requests.waitJWS(id, timeout)
+}
+
 // Request send a message that expects a response
 func (c *Client) request(id string, m proto.Message) (proto.Message, error) {
 	if c.IsClosed() {
@@ -385,7 +408,7 @@ func (c *Client) request(id string, m proto.Message) (proto.Message, error) {
 	}
 
 	r := request{id: id, message: data, response: make(chan error)}
-	c.requests.Register(r.id)
+	c.requests.register(r.id)
 	c.send <- &r
 
 	err = <-r.response
@@ -393,7 +416,7 @@ func (c *Client) request(id string, m proto.Message) (proto.Message, error) {
 		return nil, err
 	}
 
-	resp, err := c.requests.Wait(r.id, c.timeout)
+	resp, err := c.requests.wait(r.id, c.timeout)
 	if err != nil {
 		return nil, err
 	}
