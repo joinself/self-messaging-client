@@ -1,4 +1,4 @@
-module github.com/aldgate-ventures/self-messaging-client
+module github.com/selfid-net/self-messaging-client
 
 go 1.13
 
