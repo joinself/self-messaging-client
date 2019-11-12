@@ -15,8 +15,8 @@ github.com/kisielk/errcheck v1.2.0/go.mod h1:/BMXB+zMLi60iA8Vv6Ksmxu/1UDYcXs4uQL
 github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/selfid-net/self-messaging-proto v0.0.0-20191031120210-5febc880994b h1:+HIDCRHjxjGzNzE6HSVV9g7Wvt5i0tVBdkUR/l69yOI=
-github.com/selfid-net/self-messaging-proto v0.0.0-20191031120210-5febc880994b/go.mod h1:5ZzNxspy89uxwBjNzJhny4CfOUZRbhLQiLifRMEps8s=
+github.com/selfid-net/self-messaging-proto v0.0.0-20191112132827-f8fe0ddb0f42 h1:qJleKEp818d23s7V4Uw/DUOn4prZA35VhMRIKZLHHhM=
+github.com/selfid-net/self-messaging-proto v0.0.0-20191112132827-f8fe0ddb0f42/go.mod h1:5ZzNxspy89uxwBjNzJhny4CfOUZRbhLQiLifRMEps8s=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.4.0 h1:2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJyk=
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
