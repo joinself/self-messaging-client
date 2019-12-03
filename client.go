@@ -129,6 +129,7 @@ func (c *Client) tryReconnect(err error) {
 
 		err := c.setup()
 		if err == nil {
+			atomic.StoreInt32(&c.closed, 0)
 			return
 		}
 
