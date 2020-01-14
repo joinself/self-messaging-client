@@ -397,6 +397,11 @@ func (c *Client) JWSResponse(id string, timeout time.Duration) (*msgproto.Messag
 	return c.requests.waitJWS(id, timeout)
 }
 
+// JWSRegister registers a jws request by id
+func (c *Client) JWSRegister(id string) {
+	c.requests.registerJWS(id)
+}
+
 // Request send a message that expects a response
 func (c *Client) request(id string, m proto.Message) (proto.Message, error) {
 	if c.IsClosed() {
