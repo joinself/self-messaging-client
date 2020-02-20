@@ -258,7 +258,7 @@ func (c *Client) reader() {
 		}
 
 		switch hdr.Type {
-		case msgproto.MsgType_ACK, msgproto.MsgType_ERR:
+		case msgproto.MsgType_ACK, msgproto.MsgType_ERR, msgproto.MsgType_ACL:
 			c.requests.send(hdr.Id, m)
 		case msgproto.MsgType_MSG:
 			msg := m.(*msgproto.Message)
