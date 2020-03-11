@@ -144,6 +144,7 @@ func (c *Client) generateToken() error {
 	claims, err := json.Marshal(map[string]interface{}{
 		"jti": uuid.New().String(),
 		"iss": c.selfID,
+		"iat": TimeFunc().Unix(),
 		"exp": TimeFunc().Add(time.Minute).Unix(),
 	})
 
