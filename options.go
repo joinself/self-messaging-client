@@ -3,7 +3,7 @@ package messaging
 import (
 	"time"
 
-	msgproto "github.com/selfid-net/self-messaging-proto"
+	msgproto "github.com/selfid-net/self-messaging-client/proto"
 )
 
 // SendBuffer sets the size of the send buffer

@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	msgproto "github.com/selfid-net/self-messaging-proto"
+	msgproto "github.com/selfid-net/self-messaging-client/proto"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/crypto/ed25519"

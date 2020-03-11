@@ -17,7 +17,7 @@ package main
 
 import (
     messaging "github.com/selfid-net/self-messaging-client"
-    msgproto "github.com/selfid-net/self-messaging-proto"
+    msgproto "github.com/selfid-net/self-messaging-client/proto"
 )
 
 func main() {

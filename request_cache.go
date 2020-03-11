@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/gogo/protobuf/proto"
-	msgproto "github.com/selfid-net/self-messaging-proto"
+	msgproto "github.com/selfid-net/self-messaging-client/proto"
 )
 
 // requestCache stores requests that expect a response from the server

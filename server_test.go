@@ -10,7 +10,7 @@ import (
 
 	"github.com/gogo/protobuf/proto"
 	"github.com/gorilla/websocket"
-	msgproto "github.com/selfid-net/self-messaging-proto"
+	msgproto "github.com/selfid-net/self-messaging-client/proto"
 	"gopkg.in/square/go-jose.v2"
 )
 
