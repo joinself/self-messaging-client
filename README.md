@@ -1,4 +1,8 @@
-# self messaging client [![GoDoc](https://godoc.org/github.com/selfid-net/self-messaging-client?status.svg)](https://godoc.org/github.com/selfid-net/self-messaging-client) [![Go Report Card](https://goreportcard.com/badge/github.com/selfid-net/self-messaging-client)](https://goreportcard.com/report/github.com/selfid-net/self-messaging-client) [![Build Status](https://travis-ci.com/selfid-net/self-messaging-client.svg?branch=master)](https://travis-ci.com/selfid-net/self-messaging-client)
+# Self Messaging Client
+
+![Build Status](https://github.com/joinself/self-messaging-client/actions/workflows/ci.yml/badge.svg?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/selfid-net/self-messaging-client)](https://goreportcard.com/report/github.com/selfid-net/self-messaging-client)
+[![GoDoc](https://godoc.org/github.com/selfid-net/self-messaging-client?status.svg)](https://godoc.org/github.com/selfid-net/self-messaging-client)
 
 A messaging client for go for use with self's messaging service
 
